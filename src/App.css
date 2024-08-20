@@ -1,0 +1,149 @@
+.container-sm {
+    background-color: #212529; /* Ejemplo de fondo oscuro, puedes cambiarlo según tu theme */
+    color: #f8f9fa; /* Color de texto claro para buen contraste */
+    font-family: 'Roboto', sans-serif; /* Ejemplo de una fuente moderna y limpia */
+    padding-top: 4rem; /* Espaciado interno para que el contenido no esté pegado a los bordes */
+    padding-bottom: 4rem;
+    margin-top: 12% !important;
+    border-radius: 1rem; /* Bordes redondeados para un look más suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
+    max-width: 35rem;
+  }
+
+  .container-xxl{
+    background-color: #212529; /* Ejemplo de fondo oscuro, puedes cambiarlo según tu theme */
+    color: #f8f9fa; /* Color de texto claro para buen contraste */
+    font-family: 'Roboto', sans-serif; /* Ejemplo de una fuente moderna y limpia */
+    padding-top: 4rem; /* Espaciado interno para que el contenido no esté pegado a los bordes */
+    padding-bottom: 4rem;
+    border-radius: 1rem; /* Bordes redondeados para un look más suave */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 83vh; /* Ocupa toda la altura de la pantalla */
+    text-align: center;
+  }
+
+  .dark-theme-container h1, .dark-theme-container h2, .dark-theme-container h3, 
+  .dark-theme-container h4, .dark-theme-container h5, .dark-theme-container h6 {
+    color: #ffffff; /* Colores blancos para los títulos */
+  }
+  
+  .dark-theme-container p {
+    line-height: 1.6; /* Mejora la legibilidad del texto */
+    margin-bottom: 16px; /* Espaciado entre párrafos */
+  }
+
+  .index-custom{
+        /* fallback for old browsers */
+        background: rgb(199, 211, 230);
+  }
+
+  .gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgb(37, 123, 252));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgb(37, 123, 252));
+    }
+
+.link-muted{
+    color: rgba(37, 170, 255, 0.6);
+    text-decoration: none;
+}
+
+.itemCentrado{
+    display: flex;
+    justify-content: center; /* Centra verticalmente */
+    margin-bottom: 2.5rem;
+    padding: 0.5rem 1rem; /* Tamaño del padding del botón */
+}
+
+.social-icons {
+    display: flex; /* Usar flexbox para alinear los iconos en una fila */
+    justify-content: center; /* Centrar los iconos horizontalmente */
+    margin: 0 10px; /* Espacio horizontal entre los iconos */ 
+    padding: 0; /* Elimina el relleno del botón */
+  }
+
+  .arrow-back {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .arrow-back:hover {
+    transform: rotate(45deg) translate(-3px, -3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  }
+
+
+/* anime cuadro */
+.image-container {
+    position: relative;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    max-width: 300px;
+    display: inline-block;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.image {
+    display: block;
+    width: 100%; /* La imagen ocupa el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor */
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+/* nav */
+.navbar {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    
+}
+.navbar-brand {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #f8f9fa !important;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+input[type="search"] {
+    width: 10rem; /* Ajusta este valor para hacer la barra de búsqueda más pequeña */
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+}
