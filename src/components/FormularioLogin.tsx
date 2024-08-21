@@ -28,7 +28,6 @@ export function Login() {
         };
       }, []);
     const [cliente,setCliente] = useState<ICliente>(initialCliente);
-    //const navigate = useNavigate();
 
     const inputChangeValue = (event : ChangeEvent<HTMLInputElement>)=> {
          const inputName = event.target.name;
@@ -59,8 +58,8 @@ export function Login() {
         }
     return(
         <Container className="container-sm">
-              <Row>
-                   <Col sm={{size:8, offset:2}}>
+              <Row className="justify-content-center">
+                   <Col sm={{size:6, offset:0}}>
                         <h4 className="itemCentrado">Iniciar Sesión</h4>
                         <Form>
                              <FormGroup>

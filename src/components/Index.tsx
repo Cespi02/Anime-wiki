@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { IAnime } from "../Interfaces/IAnimes";
 import { Navbar, NavbarBrand, Form, Input, Container, Row, Col, Button } from "reactstrap";
 import ImageWithText from './AnimeCuadro';
+import CustomNavbar  from "./CustomNavbar";
 import ArrowBack from './ArrowBack'; 
 import ArrowNext from './ArrowNext'; 
 
@@ -69,32 +70,25 @@ export function Index() {
             setCurrentGroup(currentGroup - 1);
         }
     };
+    function registarse(){
+        navigate("/registrarse")
+    }
 
     return (
         <>
-            <Navbar color="dark" dark expand="md">
-                <Container>
-                    <NavbarBrand href="/">Anime Wiki</NavbarBrand>
-                    <Form inline onSubmit={handleSearchSubmit} className="d-flex">
-                        <Input
-                            type="search"
-                            placeholder="Buscar..."
-                            className="mr-sm-2"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                        />
-                        <Button type="submit" color="primary">Buscar</Button>
-                    </Form>
-                </Container>
-            </Navbar>
+            <CustomNavbar 
+                searchQuery={searchQuery} 
+                onSearchChange={handleSearchChange} 
+                onSearchSubmit={handleSearchSubmit} 
+            />
             <Container className="container-xxl">
                     
                 <Row className="d-flex justify-content-center">
                 <h4>Anime Wiki</h4>
                 <hr></hr>
                     {animeGroups[currentGroup]?.map((anime, index) => (
-                        <Col key={index} md={4} sm={4} lg={4} xs={6} className="mb-4 justify-content-center">
-                            <ImageWithText imageUrl={`data:image/jpeg;base64,${anime.imagen}`} text={anime.nombre} onClick={() => console.log(anime.texto + " " + anime.idAnime)} />                          
+                        <Col key={index} md={4} sm={4} lg={4} xs={8} className="mb-4 justify-content-center">
+                            <ImageWithText imageUrl={`data:image/jpeg;base64,${anime.imagen}`} text={anime.nombre} onClick={() => navigate(`/Anime/${anime.idAnime}`)} />                          
                         </Col>
                     ))}
                     <hr></hr>

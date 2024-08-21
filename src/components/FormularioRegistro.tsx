@@ -29,8 +29,6 @@ export function Registro() {
         };
       }, []);
     const [cliente,setCliente] = useState<ICliente>(initialCliente);
-    //const navigate = useNavigate();
-
     const inputChangeValue = (event : ChangeEvent<HTMLInputElement>)=> {
          const inputName = event.target.name;
          const inputValue = event.target.value;
@@ -62,7 +60,7 @@ export function Registro() {
         }
     };
        function volverALogin(){
-            navigate("/")
+            navigate("/Login")
        }
     return(
         <Container className="container-sm registro">
