@@ -10,10 +10,10 @@ import ArrowBack from './ArrowBack'; // Asegúrate de importar el componente
 
 const initialCliente = {
     nombre:"",
+    apellido:"",
     nroDoc:"",
     contrasenia:"",
-    email:"",
-    sueldo:0
+    email:""
 }
 
 
@@ -75,7 +75,7 @@ export function Registro() {
                              </FormGroup>
                              <FormGroup>
                                   <Label class="text-white">Apellido</Label>
-                                  <Input type="text" name="nroDoc" onChange={inputChangeValue} value={cliente.nombre} />
+                                  <Input type="text" name="apellido" onChange={inputChangeValue} value={cliente.apellido} />
                              </FormGroup>
                              <FormGroup>
                                   <Label class="text-white">Correo Electrónico</Label>
@@ -83,7 +83,7 @@ export function Registro() {
                              </FormGroup>
                              <FormGroup>
                                   <Label class="text-white">Contraseña</Label>
-                                  <Input type="text" name="contrasenia" onChange={inputChangeValue} value={cliente.contrasenia} />
+                                  <Input type="password" name="contrasenia" onChange={inputChangeValue} value={cliente.contrasenia} />
                              </FormGroup>
                              <FormGroup className="itemCentrado">
                              <Button class="btn btn-primary"  onClick={registrarse}>Registrarse</Button>

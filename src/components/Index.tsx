@@ -5,15 +5,52 @@ import Swal from "sweetalert2";
 import { IAnime } from "../Interfaces/IAnimes";
 import { Navbar, NavbarBrand, Form, Input, Container, Row, Col, Button } from "reactstrap";
 import ImageWithText from './AnimeCuadro';
-import CustomNavbar  from "./CustomNavbar";
+import CustomNavbar from "./CustomNavbar";
 import ArrowBack from './ArrowBack'; 
 import ArrowNext from './ArrowNext'; 
+import {jwtDecode} from "jwt-decode";
+
 
 export function Index() {
     const navigate = useNavigate();
     const [animes, setAnimes] = useState<IAnime[]>([]);
     const [currentGroup, setCurrentGroup] = useState<number>(0);
     const [searchQuery, setSearchQuery] = useState<string>('');
+
+    function getCookieValue(name: string): string | null {
+        const cookieArr = document.cookie.split(";");
+
+        for (let i = 0; i < cookieArr.length; i++) {
+            const cookiePair = cookieArr[i].split("=");
+
+            if (name === cookiePair[0].trim()) {
+                console.log("valor de la cookie "+decodeURIComponent(cookiePair[1]))
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    interface JwtPayload {
+        email: string;
+    }
+
+    function getEmailFromJwt(token: string): string | null {
+        try {
+            const decoded: any = jwtDecode<JwtPayload>(token);
+            // Acceder al correo electrónico usando el URI correcto
+            const email = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+            console.log("Email:", email);
+            return email || null;
+        } catch (error) {
+            console.error("Invalid token", error);
+            return null;
+        }
+    }
+
+    // Obtener el JWT desde la cookie y extraer el email
+    const token = getCookieValue("authToken");
+    const email = token ? getEmailFromJwt(token) : null;
 
     useEffect(() => {
         const fetchAnimes = async () => {
@@ -48,7 +85,6 @@ export function Index() {
         alert(`You searched for: ${searchQuery}`);
     };
 
-    // Divide los animes en grupos de 9
     const groupAnimes = (animes: IAnime[]) => {
         const groupedAnimes = [];
         for (let i = 0; i < animes.length; i += 6) {
@@ -70,6 +106,7 @@ export function Index() {
             setCurrentGroup(currentGroup - 1);
         }
     };
+
     function registarse(){
         navigate("/registrarse")
     }
@@ -77,15 +114,15 @@ export function Index() {
     return (
         <>
             <CustomNavbar 
+                email={email || ""} // Pasar el email al CustomNavbar
                 searchQuery={searchQuery} 
                 onSearchChange={handleSearchChange} 
                 onSearchSubmit={handleSearchSubmit} 
             />
             <Container className="container-xxl">
-                    
                 <Row className="d-flex justify-content-center">
-                <h4>Anime Wiki</h4>
-                <hr></hr>
+                    <h3>Anime Wiki</h3>
+                    <hr></hr>
                     {animeGroups[currentGroup]?.map((anime, index) => (
                         <Col key={index} md={4} sm={4} lg={4} xs={8} className="mb-4 justify-content-center">
                             <ImageWithText imageUrl={`data:image/jpeg;base64,${anime.imagen}`} text={anime.nombre} onClick={() => navigate(`/Anime/${anime.idAnime}`)} />                          

@@ -6,11 +6,48 @@ import ImageWithText from './AnimeCuadro';
 import Swal from "sweetalert2";
 import CustomNavbar from "./CustomNavbar";
 import { Container, Row, Col } from "reactstrap";
+import {jwtDecode} from "jwt-decode";
+
 
 const AnimeDescripcion: React.FC = () => {
     const { id } = useParams<{ id: string }>(); // Obtiene el id de la URL
     const [anime, setAnime] = useState<IAnime | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
+
+    function getCookieValue(name: string): string | null {
+        const cookieArr = document.cookie.split(";");
+
+        for (let i = 0; i < cookieArr.length; i++) {
+            const cookiePair = cookieArr[i].split("=");
+
+            if (name === cookiePair[0].trim()) {
+                console.log("valor de la cookie "+decodeURIComponent(cookiePair[1]))
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    interface JwtPayload {
+        email: string;
+    }
+
+    function getEmailFromJwt(token: string): string | null {
+        try {
+            const decoded: any = jwtDecode<JwtPayload>(token);
+            // Acceder al correo electrónico usando el URI correcto
+            const email = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
+            console.log("Email:", email);
+            return email || null;
+        } catch (error) {
+            console.error("Invalid token", error);
+            return null;
+        }
+    }
+    const token = getCookieValue("authToken");
+    const email = token ? getEmailFromJwt(token) : null;
+
+
 
     useEffect(() => {
         const fetchAnime = async () => {
@@ -50,6 +87,7 @@ const AnimeDescripcion: React.FC = () => {
     return (
         <>
             <CustomNavbar 
+                email={email || ""}
                 searchQuery={searchQuery} 
                 onSearchChange={handleSearchChange} 
                 onSearchSubmit={handleSearchSubmit} 

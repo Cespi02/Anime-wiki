@@ -5,14 +5,15 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import   Swal  from "sweetalert2"
 import { ICliente } from "../Interfaces/ICliente"
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap"
+import Cookies from 'js-cookie';
 
 
 const initialCliente = {
     nombre:"",
+    apellido:"",
     nroDoc:"",
     contrasenia:"",
-    email:"",
-    sueldo:0
+    email:""
 }
 
 
@@ -35,24 +36,31 @@ export function Login() {
             console.log(inputName, "+", inputValue);
          setCliente({ ...cliente, [inputName] : inputValue})     
     }
-        const logear = async () =>{
-            const response = await fetch(`${appsettings.apiUrl}Cliente/Login`,{
-                 method: 'POST',
-                 headers:{
-                      'Content-Type': 'application/json'
-                 },
-                 body: JSON.stringify(cliente)
-            })
-            if(response.ok){
-                 navigate("/Index")
-            }else{
-                 Swal.fire({
-                      title: "Error!",
-                      text: "Contraseña o correo incorrecta",
-                      icon: "warning"
-                    });
-            }
-       }
+    const logear = async () => {
+        const response = await fetch(`${appsettings.apiUrl}Cliente/Login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cliente)
+        });
+    
+        if (response.ok) {
+            const data = await response.json();
+            const { token } = data; // Obtén el token de la respuesta
+    
+            // Almacena el token en una cookie
+            Cookies.set('authToken', token, { expires: 7 }); // Cookie expira en 7 días
+    
+            navigate("/Index");
+        } else {
+            Swal.fire({
+                title: "Error!",
+                text: "Contraseña o correo incorrecto",
+                icon: "warning"
+            });
+        }
+    };
         function registarse(){
             navigate("/registrarse")
         }
@@ -64,11 +72,11 @@ export function Login() {
                         <Form>
                              <FormGroup>
                                   <Label class="text-white">Correo Electrónico</Label>
-                                  <Input type="text" name="nombre" onChange={inputChangeValue} value={cliente.email} />
+                                  <Input type="text" name="email" onChange={inputChangeValue} value={cliente.email} />
                              </FormGroup>
                              <FormGroup>
                                   <Label class="text-white">Contraseña</Label>
-                                  <Input type="text" name="nroDoc" onChange={inputChangeValue} value={cliente.nroDoc} />
+                                  <Input type="password" name="contrasenia" onChange={inputChangeValue} value={cliente.contrasenia} />
                              </FormGroup>
                              <FormGroup className="itemCentrado">
                              <Button type="button" class="btn btn-primary" onClick={logear}>Iniciar Sesión</Button>

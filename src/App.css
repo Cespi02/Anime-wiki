@@ -36,10 +36,153 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 190vh; 
+      height: 140%; 
       text-align: center;
     }
   }
+
+  .container-xxl .arrow-next{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(220deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    right: 16%;
+  }
+
+ /* Flechas responsive para cada pantalla */
+@media screen and (min-width: 1px) and (max-width: 767px) { 
+  .container-xxl .arrow-next{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(220deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    right:  15%;
+    bottom: 21%;
+  }
+
+  .container-xxl .arrow-next:hover{
+    transform: rotate(220deg) translate(3px, 3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  }
+}  
+
+@media screen and (min-width: 1px) and (max-width: 767px) { 
+  .container-xxl .arrow-back{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    left: 15%;
+    bottom: 21%;
+  }
+  .container-xxl .arrow-back:hover{
+    transform: rotate(45deg) translate(-3px, -3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  } 
+} 
+
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+  .container-xxl .arrow-next{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(220deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    right:  15%;
+    bottom: 6%;
+  }
+
+  .container-xxl .arrow-next:hover{
+    transform: rotate(220deg) translate(3px, 3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  }
+}  
+
+@media screen and (min-width: 768px) and (max-width: 991px) { 
+  .container-xxl .arrow-back{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    left: 15%;
+    bottom: 6%;
+  }
+  .container-xxl .arrow-back:hover{
+    transform: rotate(45deg) translate(-3px, -3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  } 
+} 
+
+@media screen and (min-width: 992px) and (max-width: 1800px) { 
+  .container-xxl .arrow-next{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(220deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    right:  15%;
+    bottom: 2%;
+  }
+
+  .container-xxl .arrow-next:hover{
+    transform: rotate(220deg) translate(3px, 3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  }
+}  
+
+@media screen and (min-width: 992px) and (max-width: 1800px) {
+  .container-xxl .arrow-back{
+    position:absolute;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(45deg);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    left: 15%;
+    bottom: 2%;
+  }
+  .container-xxl .arrow-back:hover{
+    transform: rotate(45deg) translate(-3px, -3px);
+    border-left-color: white;
+    border-bottom-color: white;
+  } 
+} 
 
   .descripcionAnime{
     display: block;
@@ -157,180 +300,47 @@
   }
 
 
-  .container-xxl .arrow-next{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(220deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    right: 16%;
+  @keyframes zoomInOut {
+    20% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
-
- /* Flechas responsive para cada pantalla */
-@media screen and (min-width: 1px) and (max-width: 767px) { 
-  .container-xxl .arrow-next{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(220deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    right:  15%;
-    bottom: 12%;
-  }
-
-  .container-xxl .arrow-next:hover{
-    transform: rotate(220deg) translate(3px, 3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  }
-}  
-
-@media screen and (min-width: 1px) and (max-width: 767px) { 
-  .container-xxl .arrow-back{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(45deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    left: 15%;
-    bottom: 12%;
-  }
-  .container-xxl .arrow-back:hover{
-    transform: rotate(45deg) translate(-3px, -3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  } 
-} 
-
-@media screen and (min-width: 768px) and (max-width: 991px) { 
-  .container-xxl .arrow-next{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(220deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    right:  15%;
-    bottom: 12%;
-  }
-
-  .container-xxl .arrow-next:hover{
-    transform: rotate(220deg) translate(3px, 3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  }
-}  
-
-@media screen and (min-width: 768px) and (max-width: 991px) { 
-  .container-xxl .arrow-back{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(45deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    left: 15%;
-    bottom: 12%;
-  }
-  .container-xxl .arrow-back:hover{
-    transform: rotate(45deg) translate(-3px, -3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  } 
-} 
-
-@media screen and (min-width: 992px) and (max-width: 1800px) { 
-  .container-xxl .arrow-next{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(220deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    right:  15%;
-    bottom: 8%;
-  }
-
-  .container-xxl .arrow-next:hover{
-    transform: rotate(220deg) translate(3px, 3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  }
-}  
-
-@media screen and (min-width: 992px) and (max-width: 1800px) {
-  .container-xxl .arrow-back{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(45deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    left: 15%;
-    bottom: 8%;
-  }
-  .container-xxl .arrow-back:hover{
-    transform: rotate(45deg) translate(-3px, -3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  } 
-} 
-
+  
 
 /* anime cuadro */
 .image-container {
     position: relative;
-    width: 100%; 
-    max-width: 300px;
+    width: 90%; 
     display: inline-block;
     cursor: pointer;
     overflow: hidden;
+    margin-top: 1.5rem;
+    border-radius: 2rem;
 }
 
 .image {
     display: block;
     width: 100%; 
     height: auto; 
-    border-radius: 10px; 
     object-fit: cover; 
-    padding-left: 2rem;
-    padding-top: 1.5rem;
+}
+.image:hover{
+  animation: zoomInOut 5s infinite;
 }
 
 .overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.5); 
-    padding: 10px;
-    border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; 
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding-top: 1rem;
+  font-weight: bold;
 }
 
 .image-container:hover .overlay {
@@ -353,6 +363,9 @@
   font-size: 2.5rem;
 }
 
+.titulo{
+  font-size: 2rem !important;
+}
 /* nav */
 .navbar {
     padding: 1rem;
@@ -361,6 +374,17 @@
 }
 .navbar-brand {
     font-weight: bold;
+    margin-left: 3rem;
+}
+
+@media screen and (min-width: 1px) and (max-width: 767px) { 
+  .navbar-brand {
+    font-weight: bold;
+}
+  .titulo{
+  font-size: 2rem !important;
+  margin-left: 5rem;
+}
 }
 
 .nav-link {
@@ -373,7 +397,6 @@
 }
 
 input[type="search"] {
-    width: 10rem; 
     border-radius: 0.25rem;
     margin-right: 1rem;
 }
