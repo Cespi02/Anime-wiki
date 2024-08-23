@@ -1,7 +1,6 @@
 import { ChangeEvent, useState, useEffect } from "react"
 import { appsettings } from "../settings/appsetings"
 import { useNavigate } from "react-router-dom"
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Swal from "sweetalert2"
 import { ICliente } from "../Interfaces/ICliente"
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap"

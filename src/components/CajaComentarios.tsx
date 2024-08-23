@@ -72,7 +72,7 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
         });
 
         if (response.ok) {
-            const comentarioPublicado: IComentario = await response.json();
+            await response.json();
         
             // Realizar una nueva llamada fetch para obtener la lista actualizada
             const responseComentarios = await fetch(`${appsettings.apiUrl}Comentario/ObtenerComentarios/${idAnime}`, {
