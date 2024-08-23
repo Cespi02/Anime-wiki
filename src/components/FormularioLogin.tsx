@@ -50,7 +50,7 @@ export function Login() {
             const { token } = data; // Obtén el token de la respuesta
     
             // Almacena el token en una cookie
-            Cookies.set('authToken', token, { expires: 7 }); // Cookie expira en 7 días
+            Cookies.set('authToken', token, { expires: 1 / 96  }); // Cookie expira en 7 días
     
             navigate("/Index");
         } else {

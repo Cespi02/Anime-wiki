@@ -1,7 +1,8 @@
 export interface IComentario{
     idComentario?: number,
     contenido:string,
-    idUsuario:String,
+    username:string,
     idAnime:string,
-    imagen?:string
+    imagen?:string,
+    fecha:string
 }

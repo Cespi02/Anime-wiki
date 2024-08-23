@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import CustomNavbar from "./CustomNavbar";
 import { Container, Row, Col } from "reactstrap";
 import {jwtDecode} from "jwt-decode";
+import CajaComentarios  from "./CajaComentarios"
 
 
 const AnimeDescripcion: React.FC = () => {
@@ -107,18 +108,8 @@ const AnimeDescripcion: React.FC = () => {
                         </Row>
                         
                         {/* Nueva sección para los comentarios */}
-                        <Container className="comentarios-seccion mt-5">
-                            <h5>Comentarios</h5>
-                            <Row>
-                                <Col md={12} className="mb-3">
-                                    <div className="comentario">
-                                        <p className='text-black'><strong>Usuario:</strong> Este es un comentario.</p>
-                                        <p className='text-black'>Contenido del comentario aquí.</p>
-                                    </div>
-                                </Col>
-                            </Row>
-                            {/* Aquí podrías mapear y mostrar los comentarios */}
-                        </Container>
+                        <CajaComentarios idAnime={Number(id)}>
+                        </CajaComentarios>
                     </>
                 )}
             </Container>      

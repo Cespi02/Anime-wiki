@@ -8,7 +8,8 @@ import ImageWithText from './AnimeCuadro';
 import CustomNavbar from "./CustomNavbar";
 import ArrowBack from './ArrowBack'; 
 import ArrowNext from './ArrowNext'; 
-import {jwtDecode} from "jwt-decode";
+import { getEmailFromJwt } from '../functions/utils'
+import { AUTH_TOKEN_NAME } from "../config";
 
 
 export function Index() {
@@ -31,25 +32,9 @@ export function Index() {
         return null;
     }
 
-    interface JwtPayload {
-        email: string;
-    }
-
-    function getEmailFromJwt(token: string): string | null {
-        try {
-            const decoded: any = jwtDecode<JwtPayload>(token);
-            // Acceder al correo electrónico usando el URI correcto
-            const email = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
-            console.log("Email:", email);
-            return email || null;
-        } catch (error) {
-            console.error("Invalid token", error);
-            return null;
-        }
-    }
 
     // Obtener el JWT desde la cookie y extraer el email
-    const token = getCookieValue("authToken");
+    const token = getCookieValue(AUTH_TOKEN_NAME);
     const email = token ? getEmailFromJwt(token) : null;
 
     useEffect(() => {

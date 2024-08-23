@@ -1,3 +1,6 @@
+body{
+background-image: url("./assets/background.jpg");
+}
 /* Container con tema oscuro */
 .container-sm {
     background-color: #212529; 
@@ -21,7 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 83vh; 
+    height: auto; 
     text-align: center;
   }
 
@@ -36,8 +39,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 140%; 
       text-align: center;
+      height: auto;
     }
   }
 
@@ -187,7 +190,6 @@
   .descripcionAnime{
     display: block;
     align-items: baseline;
-    height: 160vh;
   }
 
   .comentarios-seccion {
@@ -197,10 +199,12 @@
 
   .comentario {
     border: 1px solid #eee; /* Borde alrededor de cada comentario */
-    padding: 10px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    background-color: #f9f9f9; /* Fondo claro */
+    padding: 5px; /* Espaciado interno */
 }
+
+  .comentarios-seccion .w-90{
+    width: 90% !important;
+  }
 
   .dark-theme-container h1, .dark-theme-container h2, .dark-theme-container h3, 
   .dark-theme-container h4, .dark-theme-container h5, .dark-theme-container h6 {
@@ -219,10 +223,20 @@
   .gradient-custom {
     background: #6a11cb;
     
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgb(37, 123, 252));
+    background: -webkit-linear-gradient(to right, rgba(11, 167, 63, 0.9), rgb(37, 123, 252));
     
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgb(37, 123, 252));
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgb(11, 55, 121));
     }
+
+/* fuentes */
+
+.fuente-hora{
+  --bs-text-opacity: 1 !important;
+  color: grey;
+  font-size: small;
+}
+
+fuente
 
 .link-muted{
     color: rgba(37, 170, 255, 0.6);
@@ -236,6 +250,7 @@
     padding: 0.5rem 1rem; 
 }
 /* iconos */
+
 .social-icons {
     display: flex; 
     justify-content: center; 
@@ -343,6 +358,7 @@
   font-weight: bold;
 }
 
+
 .image-container:hover .overlay {
     opacity: 1;
 }
@@ -369,22 +385,11 @@
 /* nav */
 .navbar {
     padding: 1rem;
-    margin-bottom: 1rem;
-    
+    margin-bottom: 1rem; 
 }
 .navbar-brand {
     font-weight: bold;
     margin-left: 3rem;
-}
-
-@media screen and (min-width: 1px) and (max-width: 767px) { 
-  .navbar-brand {
-    font-weight: bold;
-}
-  .titulo{
-  font-size: 2rem !important;
-  margin-left: 5rem;
-}
 }
 
 .nav-link {
@@ -394,6 +399,10 @@
 .form-inline {
     display: flex;
     align-items: center;
+}
+
+.form-control:focus{
+  box-shadow: none !important;
 }
 
 input[type="search"] {
