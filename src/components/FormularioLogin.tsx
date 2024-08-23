@@ -1,11 +1,11 @@
 import { ChangeEvent, useState, useEffect } from "react"
 import { appsettings } from "../settings/appsetings"
 import { Link, useNavigate } from "react-router-dom"
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import   Swal  from "sweetalert2"
 import { ICliente } from "../Interfaces/ICliente"
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap"
 import Cookies from 'js-cookie';
+import { AUTH_TOKEN_NAME } from "../config";
 
 
 const initialCliente = {
@@ -48,10 +48,8 @@ export function Login() {
         if (response.ok) {
             const data = await response.json();
             const { token } = data; // Obtén el token de la respuesta
-    
             // Almacena el token en una cookie
-            Cookies.set('authToken', token, { expires: 1 / 96  }); // Cookie expira en 7 días
-    
+            Cookies.set(AUTH_TOKEN_NAME, token, { expires: 1 / 96  }); // Cookie expira en 7 días
             navigate("/Index");
         } else {
             Swal.fire({

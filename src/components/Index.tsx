@@ -3,21 +3,23 @@ import { appsettings } from "../settings/appsetings";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IAnime } from "../Interfaces/IAnimes";
-import { Navbar, NavbarBrand, Form, Input, Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import ImageWithText from './AnimeCuadro';
 import CustomNavbar from "./CustomNavbar";
 import ArrowBack from './ArrowBack'; 
 import ArrowNext from './ArrowNext'; 
 import { getEmailFromJwt } from '../functions/utils'
 import { AUTH_TOKEN_NAME } from "../config";
-
+import { FaLinkedin, FaGithub, FaMailchimp } from 'react-icons/fa';
 
 export function Index() {
     const navigate = useNavigate();
     const [animes, setAnimes] = useState<IAnime[]>([]);
     const [currentGroup, setCurrentGroup] = useState<number>(0);
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [transitioning, setTransitioning] = useState<boolean>(false);
 
+    
     function getCookieValue(name: string): string | null {
         const cookieArr = document.cookie.split(";");
 
@@ -81,39 +83,63 @@ export function Index() {
     const animeGroups = groupAnimes(animes);
 
     const handleNextGroup = () => {
-        if (currentGroup < animeGroups.length - 1) {
-            setCurrentGroup(currentGroup + 1);
+        if (!transitioning) {
+            setTransitioning(true);
+            setTimeout(() => {
+                setCurrentGroup(prevGroup => 
+                    prevGroup < animeGroups.length - 1 ? prevGroup + 1 : 0
+                );
+                setTimeout(() => setTransitioning(false), 500); // Asegurar que la transición se complete
+            }, 500); // Duración de la animación en ms
         }
     };
-
+    
     const handlePreviousGroup = () => {
-        if (currentGroup > 0) {
-            setCurrentGroup(currentGroup - 1);
+        if (!transitioning) {
+            setTransitioning(true);
+            setTimeout(() => {
+                setCurrentGroup(prevGroup => 
+                    prevGroup > 0 ? prevGroup - 1 : animeGroups.length - 1
+                );
+                setTimeout(() => setTransitioning(false), 500); // Asegurar que la transición se complete
+            }, 500); // Duración de la animación en ms
         }
     };
 
-    function registarse(){
-        navigate("/registrarse")
-    }
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTransitioning(true);
+            setTimeout(() => {
+                setCurrentGroup(prevGroup => 
+                    prevGroup < animeGroups.length - 1 ? prevGroup + 1 : 0
+                );
+                setTransitioning(false);
+            }, 500); 
+        }, 10000); 
+    
+        return () => clearInterval(interval); 
+    }, [animeGroups.length]);
 
     return (
         <>
             <CustomNavbar 
-                email={email || ""} // Pasar el email al CustomNavbar
+                email={email || ""}
                 searchQuery={searchQuery} 
                 onSearchChange={handleSearchChange} 
                 onSearchSubmit={handleSearchSubmit} 
             />
             <Container className="container-xxl">
                 <Row className="d-flex justify-content-center">
-                    <h3>Anime Wiki</h3>
-                    <hr></hr>
-                    {animeGroups[currentGroup]?.map((anime, index) => (
-                        <Col key={index} md={4} sm={4} lg={4} xs={8} className="mb-4 justify-content-center">
-                            <ImageWithText imageUrl={`data:image/jpeg;base64,${anime.imagen}`} text={anime.nombre} onClick={() => navigate(`/Anime/${anime.idAnime}`)} />                          
-                        </Col>
-                    ))}
-                    <hr></hr>
+                    <h3 className="ff-marko-one">Bienvenido a </h3>
+                    <h3 className="texto-grande">Anime Discussion</h3>
+                    <h4 className="">Una pagina especialmente para lorem ipsum dolor sit amet consectetur adipiscing elit suspendisse est, vulputate nibh egestas cursus semper quisque orci molestie. Velit penatibus int eger nostra sapien nisi ridiculus fames tristique montes, eget quisque urna massa potenti luctus suspendisse maecenas semper </h4>
+                    <div className={`image-group ${transitioning ? 'transitioning' : ''}`}>
+                        {animeGroups[currentGroup]?.map((anime, index) => (
+                            <Col key={index} md={4} sm={4} lg={4} xs={8} className="mb-4 justify-content-center">
+                                <ImageWithText imageUrl={`data:image/jpeg;base64,${anime.imagen}`} text={anime.nombre} onClick={() => navigate(`/Anime/${anime.idAnime}`)} />                        
+                            </Col>
+                        ))}
+                    </div>
                 </Row>
                 <Row className="mt-3">
                     <Col className="text-left">
@@ -121,6 +147,36 @@ export function Index() {
                     </Col>
                     <Col className="text-right">
                         <ArrowNext onClick={handleNextGroup}/>
+                    </Col>
+                </Row>
+            </Container>
+            <Container className="pt-3 container-fluid d-flex justify-content-center">
+                <Row>
+                    <Col md={12} xs={12}>
+                        <h6 className="text-muted ms-3">made by yo</h6>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={3} xs={3}>
+                        <Button className="ms-3"><FaLinkedin></FaLinkedin></Button>
+                    </Col>
+                    <Col md={3} xs={3}>
+                        <Button className="ms-3"><FaGithub></FaGithub></Button>
+                    </Col>
+                    <Col md={3} xs={3}>
+                        <Button className="ms-3 "><FaMailchimp></FaMailchimp></Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12} xs={12}>
+                        <h5 className="text-muted">Tecnologias utilizadas:</h5>
+                    </Col>
+                </Row>
+            </Container>
+            <Container className="py-3 container-fluid d-flex justify-content-center">
+                <Row>
+                    <Col xs={12}>
+                        <h6 className="text-muted"> ASP.NET C#, Microsoft EntityFramework, React.js, Typescript, vite.js </h6>
                     </Col>
                 </Row>
             </Container>

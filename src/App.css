@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Marko+One&display=swap');
+
 body{
-background-image: url("./assets/background.jpg");
+background-color: #D3E3F1 !important;
 }
+
+
 /* Container con tema oscuro */
 .container-sm {
-    background-color: #212529; 
+    background-color: #515151; 
     color: #f8f9fa; 
     font-family: 'Roboto', sans-serif; 
     padding-top: 4rem; 
@@ -15,12 +19,13 @@ background-image: url("./assets/background.jpg");
   }
 /* Container xxl con tema oscuro */
   .container-xxl{
-    background-color: #212529; 
+    background-color: #515151; 
     color: #f8f9fa; 
-    font-family: 'Roboto', sans-serif; 
-    padding-top: 4rem; 
+    font-family: 'Orienta'; 
+    padding-top: 2rem; 
     padding-bottom: 4rem;
-    border-radius: 1rem; 
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,12 +35,12 @@ background-image: url("./assets/background.jpg");
 
   @media screen and (min-width: 1px) and (max-width: 767px) {
     .container-xxl{
-      background-color: #212529; 
+      background-color: #515151; 
       color: #f8f9fa; 
       font-family: 'Roboto', sans-serif; 
       padding-top: 4rem; 
       padding-bottom: 4rem;
-      border-radius: 1rem; 
+      border-radius: 0rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -328,7 +333,7 @@ fuente
 /* anime cuadro */
 .image-container {
     position: relative;
-    width: 90%; 
+    width: 80%; 
     display: inline-block;
     cursor: pointer;
     overflow: hidden;
@@ -339,23 +344,25 @@ fuente
 .image {
     display: block;
     width: 100%; 
-    height: auto; 
     object-fit: cover; 
 }
 .image:hover{
   animation: zoomInOut 5s infinite;
 }
 
+.descripcionAnime .image:hover{
+  animation:none;
+}
+
 .overlay {
   position: absolute;
-  bottom: 0;
+  bottom: -7%;
   left: 0;
   right: 0; 
-  color: white;
+  color: #515151; ;
+  font-weight: 1000;
   text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  padding-top: 1rem;
-  font-weight: bold;
+  background: rgba(202, 202, 202, 1);
 }
 
 
@@ -368,6 +375,21 @@ fuente
 }
 
 
+/* carrousel */
+
+.image-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: opacity 0.5s ease-in-out;
+  background-color: #393939;
+  border-radius: 2rem;
+  width: 90% !important;
+}
+
+.image-group.transitioning {
+  opacity: 0;
+}
 
 .desc img {
   position: relative;
@@ -379,13 +401,17 @@ fuente
   font-size: 2.5rem;
 }
 
+.ff-marko-one{
+  font-family: 'Marko one' !important;
+}
+
 .titulo{
   font-size: 2rem !important;
+  color: #C8E4FF!important;
 }
 /* nav */
 .navbar {
-    padding: 1rem;
-    margin-bottom: 1rem; 
+    background-color: #393939; 
 }
 .navbar-brand {
     font-weight: bold;
@@ -401,13 +427,43 @@ fuente
     align-items: center;
 }
 
+.dropdown-usuario {
+  border-color: none;
+}
+
 .form-control:focus{
   box-shadow: none !important;
 }
+.navbar .inicio-sesion{
+  padding: 1px 6px 1px 6px
+}
+
+.icon{
+  transform: scale(1.5); 
+}
+
+.b-c-lb{
+  background-color: #D3E3F1 !important;
+}
+
+.br-0-5{
+  border-radius: 0.5rem !important; 
+}
+
+.br-1-5{
+  border-radius: 1.5rem !important; 
+}
+.br-2-5{
+  border-radius: 2.5rem !important; 
+}
+
+.navbar button{
+  border-color: #D3E3F1;
+}
 
 input[type="search"] {
-    border-radius: 0.25rem;
     margin-right: 1rem;
+    background-color: #EBF3FF;
 }
 
 .row {

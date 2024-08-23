@@ -42,5 +42,4 @@ export function getCookie(name: string): string | null {
 
 export function eliminarCookie(name: string){
     Cookies.remove(name);
-    location.reload();
 }

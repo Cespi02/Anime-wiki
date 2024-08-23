@@ -4,6 +4,7 @@ import { CustomNavbarProps } from '../Interfaces/CustomNavbarProps';
 import { FaSearch } from "react-icons/fa";
 import { AUTH_TOKEN_NAME } from '../config';
 import { eliminarCookie } from '../functions/utils';
+import { RiAccountCircleFill } from "react-icons/ri";
 
 const CustomNavbar: React.FC<CustomNavbarProps> = ({ email, searchQuery, onSearchChange, onSearchSubmit }) => {
     const boton: HTMLElement | null = document.getElementById('cerrarSesion');
@@ -17,33 +18,36 @@ const CustomNavbar: React.FC<CustomNavbarProps> = ({ email, searchQuery, onSearc
         console.error('No se encontró el enlace de cierre de sesión');
     }
     return (
-        <Navbar color="dark" dark expand="md">
+        <Navbar expand="md">
             <Container>
                 <Row className="w-100">
                     <Col className="d-flex justify-content-center">
-                        <NavbarBrand className="titulo" href="/">Anime Wiki</NavbarBrand>
+                        <NavbarBrand className="titulo ff-marko-one" href="/">Anime Discussion</NavbarBrand>
                     </Col>
                 </Row>
                 <Row className="w-100">
-                    <Col className="d-flex justify-content-end align-items-center">
-                        <Form inline onSubmit={onSearchSubmit} className="d-flex me-3">
+                    <Col className="d-flex justify-content-start align-items-center">
+                        <Form inline onSubmit={onSearchSubmit} className=" d-flex me-3">
+                            <Button className='br-0-5 b-c-lb text-dark ' type="submit" color="primary"><FaSearch /></Button>
                             <Input
                                 type="search"
                                 placeholder="Buscar..."
-                                className="mr-sm-2"
+                                className="ms-2 br-1-5"
                                 value={searchQuery}
                                 onChange={onSearchChange}
-                            />
-                            <Button type="submit" color="primary"><FaSearch /></Button>
+                            />              
                         </Form>
                     </Col>
                     <Col md={3} lg={2} sm={4} className="d-flex justify-content-end align-items-center">
                         {email === "" ? (
-                            <NavbarBrand href="/Login">Iniciar Sesión</NavbarBrand>
+                            <>
+                            <NavbarBrand className='b-c-lb px-5 text-dark br-1-5' href="/Login">Iniciar Sesión</NavbarBrand>
+                            <Button className='br-2-5 b-c-lb icon text-dark inicio-sesion' type="submit" color="primary"><RiAccountCircleFill /></Button>
+                            </>
                         ) : (
                             <NavbarBrand>
                                 <div className="dropdown">
-                                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button className="btn btn-secondary dropdown-usuario dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         {email}
                                     </button>
                                     <ul className="dropdown-menu dropdown-menu-dark">
