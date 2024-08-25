@@ -6,8 +6,6 @@ import { IAnime } from "../Interfaces/IAnimes";
 import { Container, Row, Col, Button } from "reactstrap";
 import ImageWithText from './AnimeCuadro';
 import CustomNavbar from "./CustomNavbar";
-import ArrowBack from './ArrowBack'; 
-import ArrowNext from './ArrowNext'; 
 import { getEmailFromJwt } from '../functions/utils'
 import { AUTH_TOKEN_NAME } from "../config";
 import { FaLinkedin, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
