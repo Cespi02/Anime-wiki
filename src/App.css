@@ -83,9 +83,6 @@ background-color: #D3E3F1 !important;
     border-left-color: white;
     border-bottom-color: white;
   }
-}  
-
-@media screen and (min-width: 1px) and (max-width: 767px) { 
   .container-xxl .arrow-back{
     position:absolute;
     display: inline-block;
@@ -104,8 +101,7 @@ background-color: #D3E3F1 !important;
     border-left-color: white;
     border-bottom-color: white;
   } 
-} 
-
+}  
 @media screen and (min-width: 768px) and (max-width: 991px) { 
   .container-xxl .arrow-next{
     position:absolute;
@@ -126,9 +122,6 @@ background-color: #D3E3F1 !important;
     border-left-color: white;
     border-bottom-color: white;
   }
-}  
-
-@media screen and (min-width: 768px) and (max-width: 991px) { 
   .container-xxl .arrow-back{
     position:absolute;
     display: inline-block;
@@ -147,7 +140,7 @@ background-color: #D3E3F1 !important;
     border-left-color: white;
     border-bottom-color: white;
   } 
-} 
+}  
 
 @media screen and (min-width: 992px) and (max-width: 1800px) { 
   .container-xxl .arrow-next{
@@ -168,29 +161,49 @@ background-color: #D3E3F1 !important;
     transform: rotate(220deg) translate(3px, 3px);
     border-left-color: white;
     border-bottom-color: white;
+
+    .container-xxl .arrow-back{
+      position:absolute;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-left: 3px solid white;
+      border-bottom: 3px solid white;
+      transform: rotate(45deg);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      left: 15%;
+      bottom: 2%;
+    }
+    .container-xxl .arrow-back:hover{
+      transform: rotate(45deg) translate(-3px, -3px);
+      border-left-color: white;
+      border-bottom-color: white;
+    } 
   }
 }  
 
-@media screen and (min-width: 992px) and (max-width: 1800px) {
-  .container-xxl .arrow-back{
-    position:absolute;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(45deg);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    left: 15%;
-    bottom: 2%;
-  }
-  .container-xxl .arrow-back:hover{
-    transform: rotate(45deg) translate(-3px, -3px);
-    border-left-color: white;
-    border-bottom-color: white;
-  } 
-} 
+.arrow-buttons {
+  position: absolute;
+  top: 57%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px; /* Ajusta el padding según sea necesario */
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 2rem; /* Ajusta el tamaño del ícono */
+  color: #2b2929; /* Ajusta el color del ícono */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.arrow-btn:hover {
+  color: #121314; /* Color en el hover */
+}
 
   .descripcionAnime{
     display: block;
