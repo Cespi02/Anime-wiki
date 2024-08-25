@@ -10,7 +10,7 @@ import ArrowBack from './ArrowBack';
 import ArrowNext from './ArrowNext'; 
 import { getEmailFromJwt } from '../functions/utils'
 import { AUTH_TOKEN_NAME } from "../config";
-import { FaLinkedin, FaGithub, FaMailchimp } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 export function Index() {
     const navigate = useNavigate();
@@ -128,26 +128,26 @@ export function Index() {
                 onSearchChange={handleSearchChange} 
                 onSearchSubmit={handleSearchSubmit} 
             />
-            <Container className="container-xxl">
+            <Container className="container-xxl position-relative">
                 <Row className="d-flex justify-content-center">
                     <h3 className="ff-marko-one">Bienvenido a </h3>
                     <h3 className="texto-grande">Anime Discussion</h3>
                     <h4 className="">Una pagina especialmente para lorem ipsum dolor sit amet consectetur adipiscing elit suspendisse est, vulputate nibh egestas cursus semper quisque orci molestie. Velit penatibus int eger nostra sapien nisi ridiculus fames tristique montes, eget quisque urna massa potenti luctus suspendisse maecenas semper </h4>
-                    <div className={`image-group ${transitioning ? 'transitioning' : ''}`}>
+                    <div className={`image-group align items-center ${transitioning ? 'transitioning' : ''}`}>
                         {animeGroups[currentGroup]?.map((anime, index) => (
                             <Col key={index} md={4} sm={4} lg={4} xs={8} className="mb-4 justify-content-center">
                                 <ImageWithText imageUrl={`data:image/jpeg;base64,${anime.imagen}`} text={anime.nombre} onClick={() => navigate(`/Anime/${anime.idAnime}`)} />                        
                             </Col>
                         ))}
+                        <div className="arrow-buttons">
+                            <button className="arrow-btn" onClick={handlePreviousGroup}>
+                                <FaChevronLeft />
+                            </button>
+                            <button className="arrow-btn" onClick={handleNextGroup}>
+                                <FaChevronRight />
+                            </button>
+                        </div>
                     </div>
-                </Row>
-                <Row className="mt-3">
-                    <Col className="text-left">
-                        <ArrowBack onClick={handlePreviousGroup} />
-                    </Col>
-                    <Col className="text-right">
-                        <ArrowNext onClick={handleNextGroup}/>
-                    </Col>
                 </Row>
             </Container>
             <Container className="pt-3 container-fluid d-flex justify-content-center">
@@ -157,14 +157,11 @@ export function Index() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col md={3} xs={3}>
-                        <Button className="ms-3"><FaLinkedin></FaLinkedin></Button>
+                    <Col md={4} xs={4}>
+                        <Button href="https://www.linkedin.com/in/luciano-thomas-céspedes/" className="ms-3"><FaLinkedin /></Button>
                     </Col>
-                    <Col md={3} xs={3}>
-                        <Button className="ms-3"><FaGithub></FaGithub></Button>
-                    </Col>
-                    <Col md={3} xs={3}>
-                        <Button className="ms-3 "><FaMailchimp></FaMailchimp></Button>
+                    <Col md={4} xs={4}>
+                        <Button href="https://github.com/Cespi02" className="ms-3"><FaGithub /></Button>
                     </Col>
                 </Row>
                 <Row>
