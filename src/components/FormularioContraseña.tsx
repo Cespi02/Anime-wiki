@@ -12,6 +12,7 @@ import { getUserFromJwt, getCookie } from "../functions/utils"
 const initialCliente = {
     nombre:"",
     apellido:"",
+    nombreUsuario:"",
     nroDoc:"",
     contrasenia:"",
     email:""

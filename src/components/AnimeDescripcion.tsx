@@ -6,7 +6,7 @@ import ImageWithText from './AnimeCuadro';
 import Swal from "sweetalert2";
 import CustomNavbar from "./CustomNavbar";
 import { Container, Row, Col } from "reactstrap";
-import {jwtDecode} from "jwt-decode";
+import { getUserNameFromJwt } from '../functions/utils';
 import CajaComentarios  from "./CajaComentarios"
 
 
@@ -29,25 +29,10 @@ const AnimeDescripcion: React.FC = () => {
         return null;
     }
 
-    interface JwtPayload {
-        email: string;
-    }
 
-    function getEmailFromJwt(token: string): string | null {
-        try {
-            const decoded: any = jwtDecode<JwtPayload>(token);
-            // Acceder al correo electrónico usando el URI correcto
-            const email = decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
-            console.log("Email:", email);
-            return email || null;
-        } catch (error) {
-            console.error("Invalid token", error);
-            return null;
-        }
-    }
     const token = getCookieValue("authToken");
-    const email = token ? getEmailFromJwt(token) : null;
-
+    const username = token ? getUserNameFromJwt(token) : null;
+    console.log("el nombre es: ", username)
 
 
     useEffect(() => {
@@ -88,7 +73,7 @@ const AnimeDescripcion: React.FC = () => {
     return (
         <>
             <CustomNavbar 
-                email={email || ""}
+                username={username || ""}
                 searchQuery={searchQuery} 
                 onSearchChange={handleSearchChange} 
                 onSearchSubmit={handleSearchSubmit} 

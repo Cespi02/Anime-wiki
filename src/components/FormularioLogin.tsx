@@ -11,6 +11,7 @@ import { AUTH_TOKEN_NAME } from "../config";
 const initialCliente = {
     nombre:"",
     apellido:"",
+    nombreUsuario:"",
     nroDoc:"",
     contrasenia:"",
     email:""

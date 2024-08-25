@@ -6,7 +6,7 @@ import { IAnime } from "../Interfaces/IAnimes";
 import { Container, Row, Col, Button } from "reactstrap";
 import ImageWithText from './AnimeCuadro';
 import CustomNavbar from "./CustomNavbar";
-import { getEmailFromJwt } from '../functions/utils'
+import { getEmailFromJwt, getUserNameFromJwt } from '../functions/utils'
 import { AUTH_TOKEN_NAME } from "../config";
 import { FaLinkedin, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -36,6 +36,7 @@ export function Index() {
     // Obtener el JWT desde la cookie y extraer el email
     const token = getCookieValue(AUTH_TOKEN_NAME);
     const email = token ? getEmailFromJwt(token) : null;
+    const username = token ? getUserNameFromJwt(token) : null;
 
     useEffect(() => {
         const fetchAnimes = async () => {
@@ -121,7 +122,7 @@ export function Index() {
     return (
         <>
             <CustomNavbar 
-                email={email || ""}
+                username={username || ""}
                 searchQuery={searchQuery} 
                 onSearchChange={handleSearchChange} 
                 onSearchSubmit={handleSearchSubmit} 

@@ -6,6 +6,18 @@ interface JwtPayload {
 }
 
 
+export  function getUserNameFromJwt(token: string): string | null {
+    try {
+        const decoded: any = jwtDecode<JwtPayload>(token);
+        const username = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/userdata"];
+        return username || null;
+    } catch (error) {
+        console.error("Invalid token", error);
+        return null;
+    }
+}
+
+
 export  function getEmailFromJwt(token: string): string | null {
     try {
         const decoded: any = jwtDecode<JwtPayload>(token);
@@ -18,6 +30,7 @@ export  function getEmailFromJwt(token: string): string | null {
         return null;
     }
 }
+
 
 export  function getUserFromJwt(token: string): number | null {
         try {

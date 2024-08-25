@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState, FormEvent } from 'react';
 import { Container, Row, Col, Input, Form, Button } from "reactstrap";
 import Swal from "sweetalert2";
 import { IoSend } from "react-icons/io5";
@@ -37,6 +37,11 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
     const inputChangeValue = (event: ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         setNuevosComentarios({ Contenido: inputValue });
+    };
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        await publicarComentario();
     };
 
     const publicarComentario = async (): Promise<void> => {
@@ -100,7 +105,7 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
         <Container className="comentarios-seccion mt-5">
             <h5>Comentarios</h5>
             <Row>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Col md={12} className="mb-3">
                         <div className="input-group">
                             <Input
@@ -109,7 +114,7 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
                                 placeholder='Realiza un comentario...'
                                 value={nuevosComentarios.Contenido}
                             />
-                            <Button className="btn" onClick={publicarComentario}>
+                            <Button type="submit" className="btn">
                                 <IoSend />
                             </Button>
                         </div>

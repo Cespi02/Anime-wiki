@@ -6,7 +6,7 @@ import { AUTH_TOKEN_NAME } from '../config';
 import { eliminarCookie } from '../functions/utils';
 import { RiAccountCircleFill } from "react-icons/ri";
 
-const CustomNavbar: React.FC<CustomNavbarProps> = ({ email, searchQuery, onSearchChange, onSearchSubmit }) => {
+const CustomNavbar: React.FC<CustomNavbarProps> = ({ username, searchQuery, onSearchChange, onSearchSubmit }) => {
     const boton: HTMLElement | null = document.getElementById('cerrarSesion');
     if (boton) {
         boton.addEventListener('click', (event: Event) => {
@@ -39,7 +39,7 @@ const CustomNavbar: React.FC<CustomNavbarProps> = ({ email, searchQuery, onSearc
                         </Form>
                     </Col>
                     <Col md={3} lg={2} sm={4} className="d-flex justify-content-end align-items-center">
-                        {email === "" ? (
+                        {username === "" ? (
                             <>
                             <NavbarBrand className='b-c-lb px-5 text-dark br-1-5' href="/Login">Iniciar Sesión</NavbarBrand>
                             <Button className='br-2-5 b-c-lb icon text-dark inicio-sesion' type="submit" color="primary"><RiAccountCircleFill /></Button>
@@ -48,7 +48,7 @@ const CustomNavbar: React.FC<CustomNavbarProps> = ({ email, searchQuery, onSearc
                             <NavbarBrand>
                                 <div className="dropdown">
                                     <button className="btn btn-secondary dropdown-usuario dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {email}
+                                        {username}
                                     </button>
                                     <ul className="dropdown-menu dropdown-menu-dark">
                                         <li><a id='cerrarSesion' className="dropdown-item" >Cerrar sesión</a></li>
