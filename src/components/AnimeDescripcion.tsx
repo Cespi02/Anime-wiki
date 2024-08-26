@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { appsettings } from "../settings/appsetings";
 import { IAnime } from "../Interfaces/IAnimes";
 import ImageWithText from './AnimeCuadro';
@@ -14,9 +14,9 @@ const AnimeDescripcion: React.FC = () => {
     const { id } = useParams<{ id: string }>(); // Obtiene el id de la URL
     const [anime, setAnime] = useState<IAnime | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [buscoAnime, setBuscoAnime] = useState<boolean>(false);
+   // const [buscoAnime, setBuscoAnime] = useState<boolean>(false);
     const [animes, setAnimes] = useState<IAnime[]>([]);
-    const [currentGroup, setCurrentGroup] = useState<number>(0);
+   //const [currentGroup, setCurrentGroup] = useState<number>(0);
     const navigate = useNavigate();
 
     function getCookieValue(name: string): string | null {
@@ -90,10 +90,10 @@ const AnimeDescripcion: React.FC = () => {
                     'Content-Type': 'application/json',
                 },
             });
-            setBuscoAnime(true); // Detiene la animación
+            //setBuscoAnime(true); // Detiene la animación
             if (response.ok) {
                 const data = await response.json();
-                setCurrentGroup(0);
+               // setCurrentGroup(0);
                 setAnimes(data);
             } else {
                 Swal.fire({

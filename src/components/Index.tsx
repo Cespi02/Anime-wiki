@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { appsettings } from "../settings/appsetings";
 import { useNavigate } from "react-router-dom";
@@ -18,11 +17,11 @@ export function Index() {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [transitioning, setTransitioning] = useState<boolean>(false);
     const [buscoAnime, setBuscoAnime] = useState<boolean>(false);
-    const location = useLocation();
+    /*const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const buscar = searchParams.get('buscar') === 'true';
     const grupos = parseInt(searchParams.get('grupos') ?? '');
-    const animesIds: number[] = JSON.parse(searchParams.get('animes') || '[]');
+    const animesIds: number[] = JSON.parse(searchParams.get('animes') || '[]');*/
 
     function getCookieValue(name: string): string | null {
         const cookieArr = document.cookie.split(";");
