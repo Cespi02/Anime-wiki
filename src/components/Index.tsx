@@ -6,7 +6,7 @@ import { IAnime } from "../Interfaces/IAnimes";
 import { Container, Row, Col, Button } from "reactstrap";
 import ImageWithText from './AnimeCuadro';
 import CustomNavbar from "./CustomNavbar";
-import { getEmailFromJwt, getUserNameFromJwt } from '../functions/utils'
+import { getUserNameFromJwt } from '../functions/utils'
 import { AUTH_TOKEN_NAME } from "../config";
 import { FaLinkedin, FaGithub, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -16,6 +16,7 @@ export function Index() {
     const [currentGroup, setCurrentGroup] = useState<number>(0);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [transitioning, setTransitioning] = useState<boolean>(false);
+    const [buscoAnime, setBuscoAnime] = useState<boolean>(false);
 
     
     function getCookieValue(name: string): string | null {
@@ -35,7 +36,6 @@ export function Index() {
 
     // Obtener el JWT desde la cookie y extraer el email
     const token = getCookieValue(AUTH_TOKEN_NAME);
-    const email = token ? getEmailFromJwt(token) : null;
     const username = token ? getUserNameFromJwt(token) : null;
 
     useEffect(() => {
@@ -65,10 +65,39 @@ export function Index() {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
     };
-
     const handleSearchSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        alert(`You searched for: ${searchQuery}`);
+        fetchAnimesNombre(); 
+    };
+
+    const fetchAnimesNombre = async () => {
+        try {
+            const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnimesConNombre/${searchQuery}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            setBuscoAnime(true); // Detiene la animación
+            if (response.ok) {
+                const data = await response.json();
+                setCurrentGroup(0);
+                setAnimes(data);
+            } else {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Hubo un problema al obtener los animes.",
+                    icon: "warning"
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching animes:", error);
+            Swal.fire({
+                title: "Error!",
+                text: "Hubo un problema al conectarse con el servidor.",
+                icon: "error"
+            });
+        }
     };
 
     const groupAnimes = (animes: IAnime[]) => {
@@ -88,8 +117,8 @@ export function Index() {
                 setCurrentGroup(prevGroup => 
                     prevGroup < animeGroups.length - 1 ? prevGroup + 1 : 0
                 );
-                setTimeout(() => setTransitioning(false), 500); // Asegurar que la transición se complete
-            }, 500); // Duración de la animación en ms
+                setTimeout(() => setTransitioning(false), 100); // Asegurar que la transición se complete
+            }, 300); // Duración de la animación en ms
         }
     };
     
@@ -100,12 +129,13 @@ export function Index() {
                 setCurrentGroup(prevGroup => 
                     prevGroup > 0 ? prevGroup - 1 : animeGroups.length - 1
                 );
-                setTimeout(() => setTransitioning(false), 500); // Asegurar que la transición se complete
-            }, 500); // Duración de la animación en ms
+                setTimeout(() => setTransitioning(false), 300); // Asegurar que la transición se complete
+            }, 300); // Duración de la animación en ms
         }
     };
 
     useEffect(() => {
+        if (buscoAnime) return;
         const interval = setInterval(() => {
             setTransitioning(true);
             setTimeout(() => {
@@ -113,11 +143,10 @@ export function Index() {
                     prevGroup < animeGroups.length - 1 ? prevGroup + 1 : 0
                 );
                 setTransitioning(false);
-            }, 500); 
-        }, 10000); 
-    
+            }, 300); 
+        }, 5000);       
         return () => clearInterval(interval); 
-    }, [animeGroups.length]);
+    }, [animeGroups.length, buscoAnime]);
 
     return (
         <>
@@ -152,7 +181,7 @@ export function Index() {
             <Container className="pt-3 container-fluid d-flex justify-content-center">
                 <Row>
                     <Col md={12} xs={12}>
-                        <h6 className="text-muted ms-3">made by yo</h6>
+                        <h6 className="text-muted ms-3">Hecho por Luciano Céspedes</h6>
                     </Col>
                 </Row>
                 <Row>
@@ -163,16 +192,11 @@ export function Index() {
                         <Button href="https://github.com/Cespi02" className="ms-3"><FaGithub /></Button>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md={12} xs={12}>
-                        <h5 className="text-muted">Tecnologias utilizadas:</h5>
-                    </Col>
-                </Row>
             </Container>
             <Container className="py-3 container-fluid d-flex justify-content-center">
                 <Row>
                     <Col xs={12}>
-                        <h6 className="text-muted"> ASP.NET C#, Microsoft EntityFramework, React.js, Typescript, vite.js </h6>
+                        <h6 className="text-muted">Tecnologias utilizadas: ASP.NET C#, Microsoft EntityFramework, React.js, Typescript, vite.js </h6>
                     </Col>
                 </Row>
             </Container>

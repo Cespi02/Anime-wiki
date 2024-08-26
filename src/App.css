@@ -394,7 +394,7 @@ fuente
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   background-color: #393939;
   border-radius: 2rem;
   width: 90% !important;
