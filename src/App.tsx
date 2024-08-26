@@ -6,8 +6,6 @@ import { Index } from "./components/Index"
 import { CambiarContra } from "./components/FormularioContraseña";
 
 function App() {
-
-
   return (
     <BrowserRouter>
       <Routes>

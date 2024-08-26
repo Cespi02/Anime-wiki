@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { appsettings } from "../settings/appsetings";
 import { IAnime } from "../Interfaces/IAnimes";
 import ImageWithText from './AnimeCuadro';
 import Swal from "sweetalert2";
