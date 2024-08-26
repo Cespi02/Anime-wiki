@@ -37,7 +37,6 @@ export function Index() {
         return null;
     }
 
-
     // Obtener el JWT desde la cookie y extraer el email
     const token = getCookieValue(AUTH_TOKEN_NAME);
     const username = token ? getUserNameFromJwt(token) : null;
@@ -45,7 +44,7 @@ export function Index() {
     /*if(buscar === false){*/
     useEffect(() => {
         const fetchAnimes = async () => {
-            const response = await fetch(`${import.meta.env.BASE_URL}Anime/ObtenerAnimes`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Anime/ObtenerAnimes`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +103,7 @@ export function Index() {
 
     const fetchAnimesNombre = async () => {
         try {
-            const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnimesConNombre/${searchQuery}`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Anime/ObtenerAnimesConNombre/${searchQuery}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

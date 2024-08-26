@@ -41,7 +41,7 @@ const AnimeDescripcion: React.FC = () => {
 
     useEffect(() => {
         const fetchAnime = async () => {
-            const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnime/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Anime/ObtenerAnime/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ const AnimeDescripcion: React.FC = () => {
 
     const fetchAnimesNombre = async () => {
         try {
-            const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnimesConNombre/${searchQuery}`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Anime/ObtenerAnimesConNombre/${searchQuery}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

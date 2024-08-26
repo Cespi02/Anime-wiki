@@ -16,7 +16,7 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
 
     useEffect(() => {
         const fetchComentarios = async () => {
-            const response = await fetch(`${appsettings.apiUrl}Comentario/ObtenerComentarios/${idAnime}`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Comentario/ObtenerComentarios/${idAnime}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
             return;
         }
 
-        const response = await fetch(`${appsettings.apiUrl}Comentario/NuevoComentario/IdAnime=${idAnime}&IdUsuario=${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}Comentario/NuevoComentario/IdAnime=${idAnime}&IdUsuario=${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const CajaComentarios: React.FC<ComentariosProps> = ({ idAnime }) => {
             await response.json();
         
             // Realizar una nueva llamada fetch para obtener la lista actualizada
-            const responseComentarios = await fetch(`${appsettings.apiUrl}Comentario/ObtenerComentarios/${idAnime}`, {
+            const responseComentarios = await fetch(`${import.meta.env.VITE_BASE_URL}Comentario/ObtenerComentarios/${idAnime}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',

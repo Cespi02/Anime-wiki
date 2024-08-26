@@ -49,7 +49,7 @@ export function CambiarContra() {
         }
         const idUsuario = getUserFromJwt(token);     
         try {
-            const response = await fetch(`${appsettings.apiUrl}Cliente/CambiarContra/${idUsuario}`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Cliente/CambiarContra/${idUsuario}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

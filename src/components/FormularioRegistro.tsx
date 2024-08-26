@@ -37,7 +37,7 @@ export function Registro() {
     }
     const registrarse = async () => {
         try {
-            const response = await fetch(`${appsettings.apiUrl}Cliente/Registro`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_URL}Cliente/Registro`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

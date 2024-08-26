@@ -38,7 +38,7 @@ export function Login() {
          setCliente({ ...cliente, [inputName] : inputValue})     
     }
     const logear = async () => {
-        const response = await fetch(`${appsettings.apiUrl}Cliente/Login`, {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}Cliente/Login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
