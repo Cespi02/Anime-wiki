@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { IoSend } from "react-icons/io5";
 import { FcLike } from "react-icons/fc";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
-import { appsettings } from '../settings/appsetings';
 import { ComentariosProps } from '../Interfaces/ComentariosProps';
 import { IComentario } from '../Interfaces/IComentarios';
 import { getUserFromJwt, getCookie } from '../functions/utils';

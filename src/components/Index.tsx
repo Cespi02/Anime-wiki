@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { appsettings } from "../settings/appsetings";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IAnime } from "../Interfaces/IAnimes";
