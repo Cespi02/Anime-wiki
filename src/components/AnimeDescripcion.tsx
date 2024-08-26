@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { appsettings } from "../settings/appsetings";
 import { IAnime } from "../Interfaces/IAnimes";
 import ImageWithText from './AnimeCuadro';
@@ -14,6 +14,10 @@ const AnimeDescripcion: React.FC = () => {
     const { id } = useParams<{ id: string }>(); // Obtiene el id de la URL
     const [anime, setAnime] = useState<IAnime | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [buscoAnime, setBuscoAnime] = useState<boolean>(false);
+    const [animes, setAnimes] = useState<IAnime[]>([]);
+    const [currentGroup, setCurrentGroup] = useState<number>(0);
+    const navigate = useNavigate();
 
     function getCookieValue(name: string): string | null {
         const cookieArr = document.cookie.split(";");
@@ -64,12 +68,49 @@ const AnimeDescripcion: React.FC = () => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
     };
-
     const handleSearchSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        alert(`You searched for: ${searchQuery}`);
+        fetchAnimesNombre(); 
+        const animeIds = animes.map(anime => anime.idAnime);
+
+        const searchParams = new URLSearchParams({
+            buscar: 'true',
+            grupos: '0',
+            animes: JSON.stringify(animeIds),
+          });
+      
+        navigate(`/Index?${searchParams.toString()}`);
     };
 
+    const fetchAnimesNombre = async () => {
+        try {
+            const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnimesConNombre/${searchQuery}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            setBuscoAnime(true); // Detiene la animación
+            if (response.ok) {
+                const data = await response.json();
+                setCurrentGroup(0);
+                setAnimes(data);
+            } else {
+                Swal.fire({
+                    title: "Error!",
+                    text: "Hubo un problema al obtener los animes.",
+                    icon: "warning"
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching animes:", error);
+            Swal.fire({
+                title: "Error!",
+                text: "Hubo un problema al conectarse con el servidor.",
+                icon: "error"
+            });
+        }
+    };
     return (
         <>
             <CustomNavbar 

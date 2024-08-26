@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { appsettings } from "../settings/appsetings";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +18,12 @@ export function Index() {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [transitioning, setTransitioning] = useState<boolean>(false);
     const [buscoAnime, setBuscoAnime] = useState<boolean>(false);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const buscar = searchParams.get('buscar') === 'true';
+    const grupos = parseInt(searchParams.get('grupos') ?? '');
+    const animesIds: number[] = JSON.parse(searchParams.get('animes') || '[]');
 
-    
     function getCookieValue(name: string): string | null {
         const cookieArr = document.cookie.split(";");
 
@@ -38,9 +43,10 @@ export function Index() {
     const token = getCookieValue(AUTH_TOKEN_NAME);
     const username = token ? getUserNameFromJwt(token) : null;
 
+    /*if(buscar === false){*/
     useEffect(() => {
         const fetchAnimes = async () => {
-            const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnimes`, {
+            const response = await fetch(`${import.meta.env.BASE_URL}Anime/ObtenerAnimes`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,6 +67,33 @@ export function Index() {
 
         fetchAnimes();
     }, []);
+    /*
+    else{
+        useEffect(() => {
+            const fetchAnimes = async () => {
+                const response = await fetch(`${appsettings.apiUrl}Anime/ObtenerAnimesConId/${animesIds}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    setAnimes(data);
+                } else {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Hubo un problema al obtener los animes.",
+                        icon: "warning"
+                    });
+                }
+            };
+    
+            fetchAnimes();
+        }, []);
+    }
+        */
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(event.target.value);
